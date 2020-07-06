@@ -68,16 +68,6 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 
 #### Next step
-Set the can fd protocol, and the dbitrate can be set to 8M speed. [Refer to the kernel documentation for more usage](https://www.kernel.org/doc/Documentation/networking/can.txt)
-
-```bash
-sudo ip link set can0 up type can bitrate 1000000   dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
-sudo ip link set can1 up type can bitrate 1000000   dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
-
-sudo ifconfig can0 txqueuelen 65536
-sudo ifconfig can1 txqueuelen 65536
-```
-
 The hardware is wired to can0 and can1 interface.
 
 0_L  <===> 1_L
@@ -87,12 +77,12 @@ The hardware is wired to can0 and can1 interface.
 Open two terminal windows and enter the following commands in the Windows to test can fd protocol.
 ```bash
 #send data
-cangen can0 -mv 
+pi@raspberrypi:~/CAN_HW/CAN_APP $ python can_transmit.py
 ```
 
 ```bash
-#dump data
-candump can1 
+#receive data
+pi@raspberrypi:~/CAN_HW/CAN_APP $ python can_receiver.py
 ```
 
 ### uninstall CAN-HAT
