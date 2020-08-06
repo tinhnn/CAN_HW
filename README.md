@@ -74,7 +74,7 @@ The hardware is wired to can0 and can1 interface.
 
 0_H  <===> 1_H
 
-Open two terminal windows and enter the following commands in the Windows to test can fd protocol.
+On Pi open two terminal windows and enter the following commands in the Windows to test can fd protocol.
 ```bash
 #send data
 pi@raspberrypi:~/CAN_HW/CAN_APP $ python can_transmit.py
@@ -84,6 +84,16 @@ pi@raspberrypi:~/CAN_HW/CAN_APP $ python can_transmit.py
 #receive data
 pi@raspberrypi:~/CAN_HW/CAN_APP $ python can_receiver.py
 ```
+
+Copy file "CAN_APP/PC_Test/test.py" to PC
+Edit host in line 4 to IP of PI.
+Open Terminal and cd to directory test.
+Run test file:
+```bash
+python test.py
+```
+
+CAN message from CAN0 =canbus=> CAN1 =eth=> PC and show on Terminal
 
 ### uninstall CAN-HAT
 
